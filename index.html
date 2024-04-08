@@ -10,12 +10,18 @@
         h2 {
             text-align: center;
         }
+        .wrap {
+            display: flex;
+            justify-content: center;
+        }
         canvas {
             width: 100%;
+            max-width: 800px;
+            text-align: center;
         }
         .btn-group {
             text-align: center;
-            margin-top: 2rem;
+            margin-top: 1rem;
         }
         .btn {
             padding: 2rem 4rem;
@@ -28,7 +34,9 @@
 <h2>Paper, Rock, Scissors Detection</h2>
 <video controls style="display:none"></video>
 <br/>
-<canvas></canvas>
+<div class="wrap">
+    <canvas></canvas>
+</div>
 <br />
 <div class="btn-group">
     <button id="play" class="btn">Start</button>&nbsp;
