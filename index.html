@@ -6,6 +6,23 @@
 <head>
     <meta charset="UTF-8">
     <title>YOLOv8 Video Object detector</title>
+    <style>
+        h2 {
+            text-align: center;
+        }
+        canvas {
+            width: 100%;
+        }
+        .btn-group {
+            text-align: center;
+            margin-top: 2rem;
+        }
+        .btn {
+            padding: 2rem 4rem;
+            font-size: 16px;
+            cursor: pointer;
+        }
+    </style>
 </head>
 <body>
 <h2>Paper, Rock, Scissors Detection</h2>
@@ -13,8 +30,10 @@
 <br/>
 <canvas></canvas>
 <br />
-<button id="play">Start</button>&nbsp;
-<button id="pause">Pause</button>
+<div class="btn-group">
+    <button id="play" class="btn">Start</button>&nbsp;
+    <button id="pause" class="btn">Pause</button>
+</div>
 <script src="object_detector.js" defer></script>
 </body>
 </html>
