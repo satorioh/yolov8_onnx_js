@@ -12,14 +12,19 @@
       }
       .wrap {
         display: flex;
+        flex-direction: column;
         justify-content: center;
+      }
+      #loading {
+        text-align: center;
       }
       canvas {
         width: 100%;
         max-width: 800px;
         text-align: center;
       }
-      .btn-group {
+      #btn-group {
+        display: none;
         text-align: center;
         margin-top: 1rem;
       }
@@ -35,10 +40,11 @@
     <video controls style="display: none"></video>
     <br />
     <div class="wrap">
+      <div id="loading">Loading model, please wait...</div>
       <canvas></canvas>
     </div>
     <br />
-    <div class="btn-group">
+    <div id="btn-group">
       <button id="play" class="btn">Start</button>&nbsp;
       <button id="pause" class="btn">Pause</button>
     </div>

@@ -3,13 +3,18 @@ importScripts(
 );
 
 let model = null;
+ort.InferenceSession.create("./rps_best_uint8.onnx", {
+  executionProviders: ["wasm"],
+  graphOptimizationLevel: "all",
+}).then((res) => {
+  model = res;
+  console.log("model", model);
+  postMessage({ type: "modelLoaded" });
+});
 
 async function run_model(input) {
   if (!model) {
-    model = await ort.InferenceSession.create("./rps_best_uint8.onnx", {
-      executionProviders: ["wasm"],
-      graphOptimizationLevel: "all",
-    });
+    model = await model;
   }
   input = new ort.Tensor(Float32Array.from(input), [1, 3, 640, 640]);
   const outputs = await model.run({ images: input });

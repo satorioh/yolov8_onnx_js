@@ -47,9 +47,14 @@ pauseBtn.addEventListener("click", () => {
 
 worker.onmessage = (event) => {
   const output = event.data;
-  const canvas = document.querySelector("canvas");
-  boxes = process_output(output, canvas.width, canvas.height);
-  busy = false;
+  if (output.type === "modelLoaded") {
+    document.getElementById("loading").style.display = "none";
+    document.getElementById("btn-group").style.display = "block";
+  } else {
+    const canvas = document.querySelector("canvas");
+    boxes = process_output(output, canvas.width, canvas.height);
+    busy = false;
+  }
 };
 
 function prepare_input(img) {
