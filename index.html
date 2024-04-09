@@ -1,47 +1,47 @@
 <!--https://github.com/AndreyGermanov/yolov8_inference_video_javascript-->
 <!--https://dev.to/andreygermanov/how-to-detect-objects-in-videos-in-a-web-browser-using-yolov8-neural-network-and-javascript-lfb-->
 
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
+  <head>
+    <meta charset="UTF-8" />
     <title>YOLOv8 Video Object detector</title>
     <style>
-        h2 {
-            text-align: center;
-        }
-        .wrap {
-            display: flex;
-            justify-content: center;
-        }
-        canvas {
-            width: 100%;
-            max-width: 800px;
-            text-align: center;
-        }
-        .btn-group {
-            text-align: center;
-            margin-top: 1rem;
-        }
-        .btn {
-            padding: 2rem 4rem;
-            font-size: 16px;
-            cursor: pointer;
-        }
+      h2 {
+        text-align: center;
+      }
+      .wrap {
+        display: flex;
+        justify-content: center;
+      }
+      canvas {
+        width: 100%;
+        max-width: 800px;
+        text-align: center;
+      }
+      .btn-group {
+        text-align: center;
+        margin-top: 1rem;
+      }
+      .btn {
+        padding: 2rem 4rem;
+        font-size: 16px;
+        cursor: pointer;
+      }
     </style>
-</head>
-<body>
-<h2>Paper, Rock, Scissors Detection</h2>
-<video controls style="display:none"></video>
-<br/>
-<div class="wrap">
-    <canvas></canvas>
-</div>
-<br />
-<div class="btn-group">
-    <button id="play" class="btn">Start</button>&nbsp;
-    <button id="pause" class="btn">Pause</button>
-</div>
-<script src="object_detector.js" defer></script>
-</body>
+  </head>
+  <body>
+    <h2>Paper, Rock, Scissors Webcam Detection</h2>
+    <video controls style="display: none"></video>
+    <br />
+    <div class="wrap">
+      <canvas></canvas>
+    </div>
+    <br />
+    <div class="btn-group">
+      <button id="play" class="btn">Start</button>&nbsp;
+      <button id="pause" class="btn">Pause</button>
+    </div>
+    <script src="object_detector.js" defer></script>
+  </body>
 </html>
