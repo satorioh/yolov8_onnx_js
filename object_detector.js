@@ -6,16 +6,16 @@ let interval;
 let boxes = [];
 let busy = false;
 
-video.addEventListener("play", () => {
-  window.navigator.mediaDevices
-    .getUserMedia({ video: true })
-    .then((stream) => {
-      video.srcObject = stream;
-    })
-    .catch((error) => {
-      alert("You have to give browser the permission to run Webcam");
-    });
+window.navigator.mediaDevices
+  .getUserMedia({ video: true })
+  .then((stream) => {
+    video.srcObject = stream;
+  })
+  .catch((error) => {
+    alert("You have to give browser the Webcam permission to run detection");
+  });
 
+video.addEventListener("play", () => {
   const canvas = document.querySelector("canvas");
   canvas.width = video.videoWidth;
   canvas.height = video.videoHeight;
