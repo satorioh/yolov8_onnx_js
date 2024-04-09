@@ -6,7 +6,7 @@ let model = null;
 
 async function run_model(input) {
   if (!model) {
-    model = await ort.InferenceSession.create("./rps_best.onnx", {
+    model = await ort.InferenceSession.create("./rps_best_sim.onnx", {
       executionProviders: ["wasm"],
       graphOptimizationLevel: "all",
     });
