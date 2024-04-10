@@ -22,7 +22,7 @@ async function run_model(input) {
 }
 
 onmessage = async (event) => {
-  const input = event.data;
+  const { input, startTime } = event.data;
   const output = await run_model(input);
-  postMessage(output);
+  postMessage({ type: "modelResult", result: output, startTime });
 };

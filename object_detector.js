@@ -5,6 +5,8 @@ const yolo_classes = ["Paper", "Rock", "Scissors"];
 let interval;
 let boxes = [];
 let busy = false;
+let inferCount = 0;
+let totalInferTime = 0;
 
 window.navigator.mediaDevices
   .getUserMedia({ video: true })
@@ -21,12 +23,13 @@ video.addEventListener("play", () => {
   canvas.height = video.videoHeight;
   const context = canvas.getContext("2d");
   interval = setInterval(() => {
-    console.log("Drawing");
+    console.log("interval");
     context.drawImage(video, 0, 0);
     draw_boxes(canvas, boxes);
     const input = prepare_input(canvas);
     if (!busy) {
-      worker.postMessage(input);
+      const startTime = performance.now(); // 记录开始时间
+      worker.postMessage({ input, startTime }); // 将开始时间发送到 worker
       busy = true;
     }
   }, 30);
@@ -50,9 +53,17 @@ worker.onmessage = (event) => {
   if (output.type === "modelLoaded") {
     document.getElementById("loading").style.display = "none";
     document.getElementById("btn-group").style.display = "block";
-  } else {
+  } else if (output.type === "modelResult") {
+    const endTime = performance.now(); // 记录结束时间
+    const inferTime = endTime - output.startTime; // 计算执行时间
+    inferCount++;
+    totalInferTime += inferTime;
+    const averageInferTime = parseInt(totalInferTime / inferCount);
+    console.log(`Infer count: ${inferCount}`);
+    console.log(`Average infer time: ${averageInferTime} ms`);
+
     const canvas = document.querySelector("canvas");
-    boxes = process_output(output, canvas.width, canvas.height);
+    boxes = process_output(output.result, canvas.width, canvas.height);
     busy = false;
   }
 };
@@ -141,4 +152,10 @@ function draw_boxes(canvas, boxes) {
     ctx.fillStyle = "#000000";
     ctx.fillText(label, x1, y1 + 18);
   });
+
+  // 绘制 Infer count 和 Average infer time
+  ctx.font = "16px Arial";
+  ctx.fillStyle = "black";
+  ctx.fillText(`Infer count: ${inferCount}`, 10, 20);
+  ctx.fillText(`Average infer time: ${parseInt(totalInferTime / inferCount)} ms`, 10, 40);
 }
