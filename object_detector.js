@@ -157,5 +157,11 @@ function draw_boxes(canvas, boxes) {
   ctx.font = "16px Arial";
   ctx.fillStyle = "black";
   ctx.fillText(`Infer count: ${inferCount}`, 10, 20);
-  ctx.fillText(`Average infer time: ${parseInt(totalInferTime / inferCount)} ms`, 10, 40);
+  ctx.fillText(
+    `Average infer time: ${
+      inferCount ? parseInt(totalInferTime / inferCount) : 0
+    } ms`,
+    10,
+    40,
+  );
 }
